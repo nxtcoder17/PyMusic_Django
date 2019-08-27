@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <title>Django Music</title>
+        <meta charset='UTF-8'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        {% load static %}
+        {% load staticfiles %}
+        <link rel='shortcut icon' type='image/jpeg' href="{% static '/music/images/favicon.ico' %}">
+        <link rel='stylesheet' type='text/css' href="{% static '/music/style.css'%}">
+        <script src="{% static '/music/script.js' %}"></script>
+    </head>
+    <body>
+        <!-- Music Navigation Bar -->
+        <div class='navigation_bar'>
+            <p id='title'> Not Playing </p>
+            <div class='btn'>
+                <button id='pause'> Pause </button>
+                <button id='next'> Next </button>
+            </div>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
+

@@ -1,0 +1,88 @@
+:root {
+    --my-green: #2ee662;
+}
+
+body {
+    background: rgb(0,0,0);
+}
+
+/* Navigation Bar */
+.navigation_bar {
+    display: flex;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    background-image: linear-gradient(to right, purple, tomato, #ff4000, black);
+
+    top: 0;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.navigation_bar #title {
+    padding-left: 20px;
+    margin-right: auto;
+    font-size: 25px;
+    color: black;
+    font-family: "Comic Sans MS";
+}
+
+.navigation_bar #pause,#next {
+    text-align: center;
+    margin-right: 10px;
+    border: 1px solid red;
+    padding: 5px 15px;
+    background: transparent;
+    color: red;
+    display: inline-block;
+    font-size: 16px;
+    font-family: "Comic Sans MS";
+}
+
+.navigation_bar #pause:hover,#next:hover {
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.container_songs {
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 2px solid red; */
+    margin-top: 50px;
+}
+
+.songs {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid var(--my-green);
+    border-radius: 20px;
+    color: var(--my-green);
+    font-family: "Comic Sans MS";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.songs:hover { 
+    background-color: var(--my-green);
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+}
+
+.songs:nth-child(2n) {
+    border: 2px solid yellow;
+    color: yellow;
+}
+
+.songs:nth-child(2n):hover {
+    color: black;
+    background-color: yellow;
+    font-weight: bold;
+    cursor: pointer;
+}
