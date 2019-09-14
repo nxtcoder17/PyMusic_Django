@@ -19,17 +19,32 @@ class Song:
         self.MUSIC_DIR = Path(Config.songs_dir)
         Gst.init (None)
         self.player = Gst.ElementFactory.make ("playbin", "player")
+        self.folders = []
         self.songs = []
         self.t = None
         self.title = ""
 
-    def fetch_songs(self):
-        if len(self.songs) == 0:
-            for file in self.MUSIC_DIR.iterdir():
-                if file.is_file():
-                    self.songs.append(file)
-        return self.songs
+    def fetch (self, dir):
+        """
+        fetch(): call requires a param dir and retrun
+        """
+        folders = []
+        songs = []
+        assert dir is not None, "fetch() call without <dir> argument"
+        for file in dir.iterdir():
+            if file.is_file():
+                songs.append (file)
+            elif file.is_dir():
+                folders.append (file)
+        return folders, songs
 
+    def fetch_songs(self):
+        """ Fetch songs only, usually from songs folder"""
+        if len(self.songs) == 0:
+            for file in self.MUSIC_DIR.joinpath ("./songs").iterdir():
+                if file.is_file():
+                    self.songs.append (file)
+        return self.songs
 
     def play_song (self, song_path):
         self.title = str(song_path).split('/')[-1]
