@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from music.CustomModels import Song
+from music.Config import Config
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+from pathlib import Path
 
 # Create your views here.
 
@@ -14,9 +16,21 @@ def index (request):
     songs = song.fetch_songs()
     context = {
         'songs': songs,
+        'show_folder': False,
     }
     return render (request, 'music/index.html', context)
 
+def folders (request):
+    dir_path = request.GET.get ('dir', Config.songs_dir)
+    dir_path = Path (dir_path)
+    folders, songs = song.fetch(dir_path)
+    context = {
+        'songs': songs,
+        'folders': folders,
+        'show_folder': True,
+    }
+    return render (request, 'music/index.html', context)
+    
 def favicon (request):
     return HttpResponse (open("music/images/favicon.ico").read(), content_type='image/png')
 
@@ -37,6 +51,17 @@ def pause (request):
         is_paused = False
         song.resume_song()
     return HttpResponseRedirect ('/music/')
+
+@csrf_exempt
+def iter_dir(request):
+    dir_path = request.POST.get('dir')
+    folders, songs = song.fetch_songs (dir= dir_path)
+    context = {
+            'songs': songs,
+            'folders': folders,
+    }
+    # return HttpResponse (f"<p> Iter_Dir called </p>", content_type='text/html')
+    return render(request, 'music/index.html', context)
 
 def stream (request):
     # return HttpResponse

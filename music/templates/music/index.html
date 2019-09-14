@@ -1,6 +1,18 @@
 {% extends "music/base.html" %}
 {% block content %}
     <div class='container_songs'>
+        <!-- <p style='color:red'> Folders should be here </p> -->
+		{% if show_folder %}
+			{% for folder in folders %}
+			<div class='songs'>
+				<a href="?dir={{ folder }}">
+					{{ folder }}
+				</a>
+			</div>
+			{% endfor %}
+			<br/>
+		{% endif %}
+
         {% for song in songs %}
         <div class='songs'>
             <a onclick = 'AjaxCall ("{{ song }}")'>
@@ -9,4 +21,15 @@
         </div>
         {% endfor %}
     </div>
+
+    <script>
+        var title = document.getElementById ('title');
+        var eventSource = new EventSource ("stream");
+
+        eventSource.onmessage = function (e) {
+            title.innerHTML = e.data;
+            console.log ("title.innerHTML: " + title.innerHTML);
+            console.log ("SSE Received: " + e.data);
+        }
+    </script>
 {% endblock %}

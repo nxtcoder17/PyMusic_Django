@@ -55,7 +55,7 @@ body {
     margin-top: 50px;
 }
 
-.songs {
+.songs a{
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
@@ -66,21 +66,22 @@ body {
     font-family: "Comic Sans MS";
     font-size: 18px;
     font-weight: bold;
+	text-decoration: none; /* To remove underline from href links */
 }
 
-.songs:hover { 
+.songs:hover a { 
     background-color: var(--my-green);
     cursor: pointer;
     color: black;
     font-weight: bold;
 }
 
-.songs:nth-child(2n) {
+.songs:nth-child(2n) a {
     border: 2px solid yellow;
     color: yellow;
 }
 
-.songs:nth-child(2n):hover {
+.songs:nth-child(2n):hover a {
     color: black;
     background-color: yellow;
     font-weight: bold;

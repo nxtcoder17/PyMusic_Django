@@ -22,7 +22,7 @@ function AjaxCall (song) {
 
 $(document).ready (function () {
     $('.songs').click (function () {
-        console.log ("Clicked Div box");
+        // console.log ("Clicked Div box");
         var song = this.a;
         $(song).click()
     });
