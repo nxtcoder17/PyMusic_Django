@@ -30,7 +30,7 @@ def folders (request):
         'show_folder': True,
     }
     return render (request, 'music/index.html', context)
-    
+
 def favicon (request):
     return HttpResponse (open("music/images/favicon.ico").read(), content_type='image/png')
 
@@ -57,12 +57,21 @@ def iter_dir(request):
     dir_path = request.POST.get('dir')
     folders, songs = song.fetch_songs (dir= dir_path)
     context = {
-            'songs': songs,
-            'folders': folders,
+        'songs': songs,
+        'folders': folders,
     }
     # return HttpResponse (f"<p> Iter_Dir called </p>", content_type='text/html')
     return render(request, 'music/index.html', context)
 
+@csrf_exempt
+def cli_play(request):
+    file = request.POST.get('song')
+    song.play_song(Path(file))
+    return HttpResponseRedirect('/music/')
+
+
 def stream (request):
     # return HttpResponse
     return HttpResponse (f"data: {song.title}\n\n", content_type='text/event-stream')
+
+

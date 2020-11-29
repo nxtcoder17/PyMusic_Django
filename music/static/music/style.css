@@ -14,7 +14,8 @@ body {
     width: 100%;
     height: 50px;
     align-items: center;
-    background-image: linear-gradient(to right, purple, tomato, #ff4000, black);
+    /* background-image: linear-gradient(to right, purple, tomato, #ff4000, black); */
+    background-image: linear-gradient(to right, #c59e3e, #c5653e,  #ff4000,  black);
 
     top: 0;
     margin-bottom: 20px;
@@ -86,4 +87,30 @@ body {
     background-color: yellow;
     font-weight: bold;
     cursor: pointer;
+}
+
+.folders a {
+  border-width: 3px;
+  border-color: #f46a0b;
+  color:  #f46a0b;
+}
+
+.folders:hover a {
+  border-width: 3px;
+  border-color: #f46a0b;
+  background-color: #f46a0b;
+  color: black;
+}
+
+.folders:nth-child(2n) a {
+  border-width: 3px;
+  border-color: #f46a0b;
+  color:  #f46a0b;
+}
+
+.folders:nth-child(2n):hover a {
+  border-width: 3px;
+  border-color: #f46a0b;
+  background-color: #f46a0b;
+  color: black;
 }

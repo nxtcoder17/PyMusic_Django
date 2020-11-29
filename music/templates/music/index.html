@@ -4,18 +4,18 @@
         <!-- <p style='color:red'> Folders should be here </p> -->
 		{% if show_folder %}
 			{% for folder in folders %}
-			<div class='songs'>
+			<div class='folders songs'>
 				<a href="?dir={{ folder }}">
-					{{ folder }}
+					{{ folder.name }}
 				</a>
 			</div>
 			{% endfor %}
-			<br/>
+      <br>
 		{% endif %}
-
-        {% for song in songs %}
+		  {% for song in songs %}
         <div class='songs'>
             <a onclick = 'AjaxCall ("{{ song }}")'>
+			    <!-- song.name is available because song is a pathlib.Path() object not a string -->
                 {{ song.name }}
             </a>
         </div>
